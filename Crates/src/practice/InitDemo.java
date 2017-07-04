@@ -5,7 +5,7 @@ package practice;
  */
 public class InitDemo extends Init1{
     static int x = 0;
-    int a;
+    int a = 0;
 
     InitDemo(int a) {
         this.a = a;
@@ -23,6 +23,10 @@ public class InitDemo extends Init1{
 }
 
 class Init1 {
+    {
+        int i1 = 50;
+        System.out.println("Init1 i1 = " + i1++);
+    }
     Init1() {
         System.out.println("Init1 for obj ...");
     }
