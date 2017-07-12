@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
-    <file url="file://$PROJECT_DIR$/Codewars/src/LongestConsec.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Codewars/src/Max.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Codewars/src/MaxRotate.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Coursera/src/javaprogramming/Eratosthenes.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Crates/src/Test/BasicPracticeTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Crates/src/Test/EmployeeTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Crates/src/Test/LongestConsecTest.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Crates/src/Test/ReverseStringTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/Tools/DocumentUtils.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/Tools/EncryptUtils.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/Tools/PropertiesTools.java" charset="UTF-8" />
@@ -16,7 +9,7 @@
     <file url="file://$PROJECT_DIR$/Crates/src/practice/Chocolates.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/practice/Employee.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/practice/HtmlParser.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Crates/src/practice/JSONTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Crates/src/practice/InnerClassStudy.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/practice/JSONTest.java" charset="GB18030" />
     <file url="file://$PROJECT_DIR$/Crates/src/practice/Manager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/practice/Package.java" charset="UTF-8" />
