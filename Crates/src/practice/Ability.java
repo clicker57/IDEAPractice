@@ -1,6 +1,8 @@
 package practice;
 
+import java.io.IOException;
+
 public interface Ability {
 
-    void flyAway();
+    void flyAway() throws IOException;
 }
