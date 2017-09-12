@@ -22,9 +22,9 @@ public class ArrPractice {
     public static void main(String[] args) {
         ArrPractice obj = new ArrPractice();
 
+        obj.iteratorList();
         obj.foreach();
         obj.forlist();
-        obj.iteratorList();
         obj.forArray();
     }
 
