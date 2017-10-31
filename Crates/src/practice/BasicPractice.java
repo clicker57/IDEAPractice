@@ -2,6 +2,8 @@ package practice;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class BasicPractice {
@@ -29,6 +31,11 @@ public class BasicPractice {
 
         BasicPractice obj = new BasicPractice();
         obj.parseDoc("/Users/Philip/workspaces/jdkprac/l.man");
+
+
+        double dd = 1234.5993;
+        DecimalFormat df = new DecimalFormat("#.##");
+        System.out.println("decimalformat: " + df.format(dd));
     }
 
     private void parseDoc(String fileName) {
