@@ -120,4 +120,17 @@ public class Chocolates {
     public void setRum(int rum) {
         this.rum = rum;
     }
+
+    @Override
+    public String toString() {
+        return "Chocolates{" +
+                "coco=" + coco +
+                ", milk=" + milk +
+                ", cream=" + cream +
+                ", jam=" + jam +
+                ", rum=" + rum +
+                ", recipeBook=" + recipeBook +
+                ", priceBook=" + priceBook +
+                '}';
+    }
 }

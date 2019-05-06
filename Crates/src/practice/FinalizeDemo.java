@@ -48,11 +48,13 @@ public class FinalizeDemo {
 
 class Cake{
     private int id;
+
     Cake(int id) {
         this.id = id;
         System.out.println("Cake Object " + id + " is created.");
     }
 
+    @Override
     protected void finalize() throws java.lang.Throwable {
         super.finalize();
         System.out.println("Cake object " + id + " is disposed.");

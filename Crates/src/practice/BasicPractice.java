@@ -1,12 +1,14 @@
 package practice;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import net.sf.json.JSONArray;
+import org.apache.commons.beanutils.BeanUtils;
+
+import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.security.MessageDigest;
-import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author Philip
@@ -21,10 +23,28 @@ public class BasicPractice {
 
         BasicPractice obj = new BasicPractice();
 
-//        double dd = 1234.5993;
-//        DecimalFormat df = new DecimalFormat("#.##");
-//        System.out.println("decimal format: " + df.format(dd));
+        // 字符串转date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date newDate = sdf.parse("2020-02-29 12:03:44", new ParsePosition(0));
+        System.out.println("new date: " + newDate.toString());
+        System.out.println(newDate.getTime());
 
+        Calendar cc = Calendar.getInstance();
+        cc.setTime(newDate);
+        cc.add(Calendar.YEAR, -1);
+        System.out.println("last year day: " + sdf.format(cc.getTime()));
+
+        List<Map<String,String>> mList = new ArrayList<>();
+        for (int i = 0; i< 2; i++) {
+            Map<String, String> mmap = new HashMap<>();
+            mmap.put(String.valueOf(i), "a" + i);
+            mList.add(mmap);
+        }
+        List<String> ctrlOrgList = new ArrayList<>();
+        for (Map<String,String> e : mList) {
+            ctrlOrgList.addAll(e.keySet());
+        }
+        System.out.println("ctrlOrgList: " + ctrlOrgList.toString());
     }
 
     public static String hexStr2Str(String hexStr) {
@@ -40,8 +60,7 @@ public class BasicPractice {
         return new String(bytes);
     }
 
-
-    public static final String MD5(String pwd) {
+    public static String MD5(String pwd) {
         //用于加密的字符
         char[] md5String = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                 'A', 'B', 'C', 'D', 'E', 'F' };
@@ -62,8 +81,7 @@ public class BasicPractice {
             int j = md.length;
             char[] str = new char[j * 2];
             int k = 0;
-            for (int i = 0; i < j; i++) {
-                byte byte0 = md[i];
+            for (byte byte0 : md) {
                 str[k++] = md5String[byte0 >>> 4 & 0xf];
                 str[k++] = md5String[byte0 & 0xf];
             }
