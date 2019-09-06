@@ -1,5 +1,7 @@
 package javaprogramming;
 
+import java.util.Arrays;
+
 /**
  * description: 用“埃氏筛法”求2～10000以内的素数。
  *              要求使用数组，使用数组的长度，使用增强的for语句。
@@ -15,12 +17,10 @@ public class Eratosthenes {
      */
     public static void main(String[] args) {
         int MAX_N = 10000;
-        int numbers[] = new int [MAX_N];
+        int[] numbers = new int[MAX_N];
 
         // 初始化，存储从1到最大值
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = i + 1;
-        }
+        Arrays.setAll(numbers, i -> i + 1);
 
         for (int factor = 2; factor <= MAX_N; factor++) {
             // 既然是倍数，那么小于因子的直接过滤，因子的相邻倍数之间的数字也都不必遍历
