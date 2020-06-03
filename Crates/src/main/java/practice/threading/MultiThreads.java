@@ -1,13 +1,13 @@
 package practice.threading;
 
 public class MultiThreads extends Thread {
-    private int counter = 0;
+    private static Integer counter = 0;
     private String tName;
     private int tOrder;
 
     public MultiThreads(int tOrder) {
         this.tOrder = tOrder;
-        this.tName = "t" + this.tOrder;
+        this.tName = "t" + tOrder;
     }
 
     @Override
@@ -21,30 +21,35 @@ public class MultiThreads extends Thread {
         }
     }
 
-    public synchronized void odd() {
-        while (this.counter%2 != 1) {
-            try{
-                wait();
-            } catch (Exception e) {
-                e.printStackTrace();
+    public void odd() {
+        synchronized(counter) {
+            while (counter % 2 != 1) {
+                try {
+                    wait();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
-        System.out.println(this.tName + " ----- " + this.counter++);
-        notifyAll();
+            System.out.println(this.tName + " ----- " + counter);
+            counter++;
+            notifyAll();
+        }
     }
 
-    public synchronized void even() {
-        while (this.counter%2 != 0) {
-            try{
-                wait();
-            } catch (Exception e) {
-                e.printStackTrace();
+    public void even() {
+        synchronized(counter) {
+            while (counter % 2 != 0) {
+                try {
+                    wait();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
-        System.out.println(this.tName + " ----- " + this.counter++);
-        notifyAll();
+            System.out.println(this.tName + " ----- " + counter++);
+            notifyAll();
+        }
     }
 
     public static void main(String[] args) {

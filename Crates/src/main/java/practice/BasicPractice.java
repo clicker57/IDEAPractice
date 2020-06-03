@@ -1,11 +1,14 @@
 package practice;
 
+import day08.exercise1.Director;
+
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author Philip
@@ -13,10 +16,8 @@ import java.util.Date;
 public class BasicPractice {
 
     public static void main(String[] args) {
-        long beginT;
-        System.currentTimeMillis();
-        long endT;
-        System.currentTimeMillis();
+        long beginT = System.currentTimeMillis();
+        long endT = System.currentTimeMillis();
 
         BasicPractice obj = new BasicPractice();
 
@@ -25,28 +26,6 @@ public class BasicPractice {
         Date newDate = sdf.parse("2019-12-30", new ParsePosition(0));
         System.out.println("new date: " + newDate.toString());
 
-        Calendar cc = Calendar.getInstance();
-        cc.setTime(newDate);
-        cc.add(Calendar.DATE, 2);
-        System.out.println("the next day: " + sdf.format(cc.getTime()));
-
-    }
-
-    private static String dateTransfer(String dateOri) throws ParseException {
-        String dateStr = dateOri.replace("-", "").replace("/", "");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        Date date = sdf.parse(dateStr);
-        SimpleDateFormat sdft = new SimpleDateFormat("yyyy-MM-dd");
-        return sdft.format(date);
-    }
-
-    private static String formatToParse(String curDate, String srcPattern, String tgtPattern)
-        throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(srcPattern);
-        sdf.setLenient(false);
-        Date date = sdf.parse(curDate);
-        SimpleDateFormat sdft = new SimpleDateFormat(tgtPattern);
-        return sdft.format(date);
     }
 
     public static String hexStr2Str(String hexStr) {
@@ -64,8 +43,8 @@ public class BasicPractice {
 
     public static String MD5(String pwd) {
         //用于加密的字符
-        char[] md5String = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'A', 'B', 'C', 'D', 'E', 'F' };
+        char[] md5String = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'A', 'B', 'C', 'D', 'E', 'F'};
         try {
             //使用平台的默认字符集将此 String 编码为 byte序列，并将结果存储到一个新的 byte数组中
             byte[] btInput = pwd.getBytes();

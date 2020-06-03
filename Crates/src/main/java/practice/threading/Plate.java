@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Plate {
     /**
-     * ¹«¹²×ÊÔ´
+     * å…¬å…±èµ„æº
      */
     List<Object> eggs = new ArrayList<>();
 
@@ -18,7 +18,7 @@ public class Plate {
     }
 
     /**
-     * Ïû·Ñ
+     * æ¶ˆè´¹
      */
     public synchronized Object getEgg() {
         while (eggs.size() == 0) {
@@ -29,14 +29,14 @@ public class Plate {
             }
         }
         Object egg = eggs.get(0);
-        eggs.clear();// Çå¿ÕÅÌ×Ó
-        notify();// »½ĞÑ×èÈû¶ÓÁĞµÄÄ³Ïß³Ìµ½¾ÍĞ÷¶ÓÁĞ
-        System.out.println("ÄÃµ½¼¦µ°");
+        eggs.clear();// æ¸…ç©ºç›˜å­
+        notify();// å”¤é†’é˜»å¡é˜Ÿåˆ—çš„æŸçº¿ç¨‹åˆ°å°±ç»ªé˜Ÿåˆ—
+        System.out.println("æ‹¿åˆ°é¸¡è›‹");
         return egg;
     }
 
     /**
-     * Éú²ú
+     * ç”Ÿäº§
      */
     public synchronized void putEgg(Object egg) {
         while (eggs.size() > 0) {
@@ -46,9 +46,9 @@ public class Plate {
                 e.printStackTrace();
             }
         }
-        eggs.add(egg);// ÍùÅÌ×ÓÀï·Å¼¦µ°
-        notify();// »½ĞÑ×èÈû¶ÓÁĞµÄÄ³Ïß³Ìµ½¾ÍĞ÷¶ÓÁĞ
-        System.out.println("·ÅÈë¼¦µ°");
+        eggs.add(egg);// å¾€ç›˜å­é‡Œæ”¾é¸¡è›‹
+        notify();// å”¤é†’é˜»å¡é˜Ÿåˆ—çš„æŸçº¿ç¨‹åˆ°å°±ç»ªé˜Ÿåˆ—
+        System.out.println("æ”¾å…¥é¸¡è›‹");
     }
 
     static class AddThread implements Runnable {
