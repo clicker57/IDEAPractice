@@ -32,7 +32,6 @@ public class BasicPractice {
         List<String> sl = new ArrayList<>();
         sl.add("1");
         sl.add("2");
-        sl.add("3");
         sl = sl.subList(0, 2);
         System.out.println(sl);
     }
