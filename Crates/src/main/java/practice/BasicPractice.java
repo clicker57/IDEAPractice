@@ -29,6 +29,12 @@ public class BasicPractice {
         Date newDate = sdf.parse("2019-12-30", new ParsePosition(0));
         System.out.println("new date: " + newDate.toString());
 
+        List<String> sl = new ArrayList<>();
+        sl.add("1");
+        sl.add("2");
+        sl.add("3");
+        sl = sl.subList(0, 2);
+        System.out.println(sl);
     }
 
     public static String hexStr2Str(String hexStr) {
