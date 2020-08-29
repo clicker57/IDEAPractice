@@ -2,6 +2,7 @@ package practice;
 
 import day08.exercise1.Director;
 
+import javax.xml.transform.Source;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.MessageDigest;
@@ -10,12 +11,14 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static java.lang.Thread.sleep;
+
 /**
  * @author Philip
  */
 public class BasicPractice {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         long beginT = System.currentTimeMillis();
         long endT = System.currentTimeMillis();
 
