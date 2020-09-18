@@ -9,6 +9,8 @@ import java.security.MessageDigest;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static java.lang.Thread.sleep;
@@ -17,6 +19,8 @@ import static java.lang.Thread.sleep;
  * @author Philip
  */
 public class BasicPractice {
+    private BigDecimal val;
+    private String strNull;
 
     public static void main(String[] args) throws InterruptedException {
         long beginT = System.currentTimeMillis();
@@ -29,12 +33,8 @@ public class BasicPractice {
         Date newDate = sdf.parse("2019-12-30", new ParsePosition(0));
         System.out.println("new date: " + newDate.toString());
 
-        List<String> sl = new ArrayList<>();
-        sl.add("1");
-        sl.add("2");
-        sl.add("3");
-        sl = sl.subList(0, 2);
-        System.out.println(sl);
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH24:mm:ss"));
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS")));
     }
 
     public static String hexStr2Str(String hexStr) {
