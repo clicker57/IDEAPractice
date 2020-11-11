@@ -18,6 +18,7 @@ public class BasicPractice {
     public static void main(String[] args) throws InterruptedException {
         long beginT = System.currentTimeMillis();
         long endT = System.currentTimeMillis();
+        System.out.println("beginT : " + beginT);
 
         // 字符串转date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -30,6 +31,8 @@ public class BasicPractice {
         System.out.println("1st output ...");
 
         System.out.println("2nd output ...");
+
+        System.out.println("output for master ...");
     }
 
     public static String hexStr2Str(String hexStr) {
