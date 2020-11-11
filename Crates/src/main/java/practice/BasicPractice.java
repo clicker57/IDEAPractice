@@ -30,6 +30,8 @@ public class BasicPractice {
         System.out.println("1st output ...");
 
         System.out.println("2nd output ...");
+
+        System.out.println("output from dev ...");
     }
 
     public static String hexStr2Str(String hexStr) {
