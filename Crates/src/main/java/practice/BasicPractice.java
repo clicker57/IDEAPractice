@@ -28,6 +28,8 @@ public class BasicPractice {
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS")));
 
         System.out.println("1st output ...");
+
+        System.out.println("2nd output ...");
     }
 
     public static String hexStr2Str(String hexStr) {
