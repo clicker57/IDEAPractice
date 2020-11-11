@@ -26,6 +26,8 @@ public class BasicPractice {
 
         LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH24:mm:ss"));
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS")));
+
+        System.out.println("1st output ...");
     }
 
     public static String hexStr2Str(String hexStr) {
