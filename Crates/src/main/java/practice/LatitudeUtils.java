@@ -21,18 +21,18 @@ public class LatitudeUtils {
     public static final String KEY_1 = "7d9fbeb43e975cd1e9477a7e5d5e192a";
 
     /**
-     * ·µ»ØÊäÈëµØÖ·µÄ¾­Î³¶È×ø±ê
-     * key lng(¾­¶È),lat(Î³¶È)
+     * è¿”å›è¾“å…¥åœ°å€çš„ç»çº¬åº¦åæ ‡
+     * key lng(ç»åº¦),lat(çº¬åº¦)
      */
     public static Map<String,String> getGeocoderLatitude(String address){
         BufferedReader in = null;
         try {
 
-            //½«µØÖ·×ª»»³Éutf-8µÄ16½øÖÆ
+            //å°†åœ°å€è½¬æ¢æˆutf-8çš„16è¿›åˆ¶
             address = URLEncoder.encode(address, "UTF-8");
 
             URL tirc = new URL("http://api.map.baidu.com/geocoder/V2?address="+ address +"&output=json&key="+ KEY_1);
-            System.out.println("tirc: " + tirc.toString());
+            System.out.println("tirc: " + tirc);
 
             in = new BufferedReader(new InputStreamReader(tirc.openStream(), StandardCharsets.UTF_8));
             String res;
@@ -68,7 +68,7 @@ public class LatitudeUtils {
     }
 
     public static void main(String[] args){
-        Map<String, String> json = LatitudeUtils.getGeocoderLatitude("¸£½¨ÈªÖİ°²ÏªºşÍ·");
+        Map<String, String> json = LatitudeUtils.getGeocoderLatitude("ç¦å»ºæ³‰å·å®‰æºªæ¹–å¤´");
 
         System.out.println("json: " + json.toString());
 //        System.out.println("lng : " + json.get("lng"));
@@ -80,40 +80,40 @@ public class LatitudeUtils {
 
 
 /**
- * java°æ¼ÆËãsignatureÇ©Ãû
+ * javaç‰ˆè®¡ç®—signatureç­¾å
  */
 class SnCal {
     public static void main(String[] args)
             throws UnsupportedEncodingException, NoSuchAlgorithmException {
         SnCal snCal = new SnCal();
     /*
-        ¼ÆËãsn¸ú²ÎÊı¶Ô³öÏÖË³ĞòÓĞ¹Ø£¬getÇëÇóÇëÊ¹ÓÃLinkedHashMap±£´æ<key,value>£¬¸Ã·½·¨¸ù¾İkeyµÄ²åÈëË³ĞòÅÅĞò£»
-        postÇëÊ¹ÓÃTreeMap±£´æ<key,value>£¬¸Ã·½·¨»á×Ô¶¯½«key°´ÕÕ×ÖÄ¸a-zË³ĞòÅÅĞò¡£
-        ËùÒÔgetÇëÇó¿É×Ô¶¨Òå²ÎÊıË³Ğò£¨sn²ÎÊı±ØĞëÔÚ×îºó£©·¢ËÍÇëÇó£¬µ«ÊÇpostÇëÇó±ØĞë°´ÕÕ×ÖÄ¸a-zË³ĞòÌî³äbody£¨sn²ÎÊı±ØĞëÔÚ×îºó£©¡£
-        ÒÔgetÇëÇóÎªÀı£ºhttp://api.map.baidu.com/geocoder/v2/?address=°Ù¶È´óÏÃ&output=json&ak=yourak£¬
-        paramsMapÖĞÏÈ·ÅÈëaddress£¬ÔÙ·Åoutput£¬È»ºó·Åak£¬·ÅÈëË³Ğò±ØĞë¸úgetÇëÇóÖĞ¶ÔÓ¦²ÎÊıµÄ³öÏÖË³Ğò±£³ÖÒ»ÖÂ¡£
+        è®¡ç®—snè·Ÿå‚æ•°å¯¹å‡ºç°é¡ºåºæœ‰å…³ï¼Œgetè¯·æ±‚è¯·ä½¿ç”¨LinkedHashMapä¿å­˜<key,value>ï¼Œè¯¥æ–¹æ³•æ ¹æ®keyçš„æ’å…¥é¡ºåºæ’åºï¼›
+        postè¯·ä½¿ç”¨TreeMapä¿å­˜<key,value>ï¼Œè¯¥æ–¹æ³•ä¼šè‡ªåŠ¨å°†keyæŒ‰ç…§å­—æ¯a-zé¡ºåºæ’åºã€‚
+        æ‰€ä»¥getè¯·æ±‚å¯è‡ªå®šä¹‰å‚æ•°é¡ºåºï¼ˆsnå‚æ•°å¿…é¡»åœ¨æœ€åï¼‰å‘é€è¯·æ±‚ï¼Œä½†æ˜¯postè¯·æ±‚å¿…é¡»æŒ‰ç…§å­—æ¯a-zé¡ºåºå¡«å……bodyï¼ˆsnå‚æ•°å¿…é¡»åœ¨æœ€åï¼‰ã€‚
+        ä»¥getè¯·æ±‚ä¸ºä¾‹ï¼šhttp://api.map.baidu.com/geocoder/v2/?address=ç™¾åº¦å¤§å¦&output=json&ak=yourakï¼Œ
+        paramsMapä¸­å…ˆæ”¾å…¥addressï¼Œå†æ”¾outputï¼Œç„¶åæ”¾akï¼Œæ”¾å…¥é¡ºåºå¿…é¡»è·Ÿgetè¯·æ±‚ä¸­å¯¹åº”å‚æ•°çš„å‡ºç°é¡ºåºä¿æŒä¸€è‡´ã€‚
      */
 
         Map paramsMap = new LinkedHashMap<String, String>();
-        paramsMap.put("address", "°Ù¶È´óÏÃ");
+        paramsMap.put("address", "ç™¾åº¦å¤§å¦");
         paramsMap.put("output", "json");
         paramsMap.put("ak", "yourak");
 
-        // µ÷ÓÃÏÂÃæµÄtoQueryString·½·¨£¬¶ÔLinkedHashMapÄÚËùÓĞvalue×÷utf8±àÂë£¬Æ´½Ó·µ»Ø½á¹ûaddress=%E7%99%BE%E5%BA%A6%E5%A4%A7%E5%8E%A6&output=json&ak=yourak
+        // è°ƒç”¨ä¸‹é¢çš„toQueryStringæ–¹æ³•ï¼Œå¯¹LinkedHashMapå†…æ‰€æœ‰valueä½œutf8ç¼–ç ï¼Œæ‹¼æ¥è¿”å›ç»“æœaddress=%E7%99%BE%E5%BA%A6%E5%A4%A7%E5%8E%A6&output=json&ak=yourak
         String paramsStr = snCal.toQueryString(paramsMap);
 
-        // ¶ÔparamsStrÇ°ÃæÆ´½ÓÉÏ/geocoder/v2/?£¬ºóÃæÖ±½ÓÆ´½ÓyourskµÃµ½/geocoder/v2/?address=%E7%99%BE%E5%BA%A6%E5%A4%A7%E5%8E%A6&output=json&ak=yourakyoursk
+        // å¯¹paramsStrå‰é¢æ‹¼æ¥ä¸Š/geocoder/v2/?ï¼Œåé¢ç›´æ¥æ‹¼æ¥yourskå¾—åˆ°/geocoder/v2/?address=%E7%99%BE%E5%BA%A6%E5%A4%A7%E5%8E%A6&output=json&ak=yourakyoursk
         String wholeStr = "/geocoder/v2/?" + paramsStr + "yoursk";
 
-        // ¶ÔÉÏÃæwholeStrÔÙ×÷utf8±àÂë
+        // å¯¹ä¸Šé¢wholeStrå†ä½œutf8ç¼–ç 
         String tempStr = URLEncoder.encode(wholeStr, "UTF-8");
 
-        // µ÷ÓÃÏÂÃæµÄMD5·½·¨µÃµ½×îºóµÄsnÇ©Ãû7de5a22212ffaa9e326444c75a58f9a0
+        // è°ƒç”¨ä¸‹é¢çš„MD5æ–¹æ³•å¾—åˆ°æœ€åçš„snç­¾å7de5a22212ffaa9e326444c75a58f9a0
         System.out.println(snCal.MD5(tempStr));
     }
 
     /**
-     * ¶ÔMapÄÚËùÓĞvalue×÷utf8±àÂë£¬Æ´½Ó·µ»Ø½á¹û
+     * å¯¹Mapå†…æ‰€æœ‰valueä½œutf8ç¼–ç ï¼Œæ‹¼æ¥è¿”å›ç»“æœ
      *
      * @param data
      * @return
@@ -134,7 +134,7 @@ class SnCal {
     }
 
     /**
-     * À´×ÔstackoverflowµÄMD5¼ÆËã·½·¨£¬µ÷ÓÃÁËMessageDigest¿âº¯Êı£¬²¢°ÑbyteÊı×é½á¹û×ª»»³É16½øÖÆ
+     * æ¥è‡ªstackoverflowçš„MD5è®¡ç®—æ–¹æ³•ï¼Œè°ƒç”¨äº†MessageDigeståº“å‡½æ•°ï¼Œå¹¶æŠŠbyteæ•°ç»„ç»“æœè½¬æ¢æˆ16è¿›åˆ¶
      *
      * @param md5
      * @return

@@ -1,6 +1,5 @@
 package practice;
 
-import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -12,8 +11,6 @@ import java.util.Date;
  * @author Philip
  */
 public class BasicPractice {
-    private BigDecimal val;
-    private String strNull;
 
     public static void main(String[] args) throws InterruptedException {
         long beginT = System.currentTimeMillis();
@@ -27,11 +24,6 @@ public class BasicPractice {
         LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH24:mm:ss"));
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS")));
 
-        System.out.println("1st output ...");
-
-        System.out.println("2nd output ...");
-
-        System.out.println("output from dev ...");
     }
 
     public static String hexStr2Str(String hexStr) {
@@ -49,8 +41,7 @@ public class BasicPractice {
 
     public static String MD5(String pwd) {
         //用于加密的字符
-        char[] md5String = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'A', 'B', 'C', 'D', 'E', 'F'};
+        char[] md5String = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         try {
             //使用平台的默认字符集将此 String 编码为 byte序列，并将结果存储到一个新的 byte数组中
             byte[] btInput = pwd.getBytes();

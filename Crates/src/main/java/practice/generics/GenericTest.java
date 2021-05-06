@@ -8,14 +8,12 @@ public class GenericTest {
         List<? extends Apple> list1 = new ArrayList<>();
         List<? super ApplePie> list2 = new ArrayList<>();
 
-//        list1.add(new Fruit());
+//        list1.add(new Fruit());    // invalid
         Apple newApple = list1.get(0);
 
         list2.add(new ApplePie());
         list2.add(new ApplePieBox());
-//        list2.add(new Apple());
-
-        List<String>[] sList;
+//        list2.add(new Apple());    // invalid
     }
 
     public static<T> T getData(List<T> data) {
@@ -32,8 +30,5 @@ public class GenericTest {
     }
 }
 
-class Fruit{}
-class Apple extends Fruit{}
-class Banana extends Fruit{}
 class ApplePie extends Apple{}
 class ApplePieBox extends ApplePie{}

@@ -4,14 +4,14 @@ package practice;
  * Created by Philip on 18/05/2017.
  */
 public class Package {
-    private int maxVolume; // 背包容量
+    private final int maxVolume; // 背包容量
     private int maxRocks = 5; // 物品数量
 
     // 物品列表（体积、价值）
-    private int[] rockVolumes = new int[] {1, 2, 3, 4, 5, 6, 7};
-    private int[] rockValues = new int[] {1, 2, 3, 4, 5, 6, 7};
+    private final int[] rockVolumes = new int[] {1, 2, 3, 4, 5, 6, 7};
+    private final int[] rockValues = new int[] {1, 2, 3, 4, 5, 6, 7};
 
-    private int[][] maxPackValues;
+    private final int[][] maxPackValues;
 
     public Package(int maxV, int maxRocks) {
         this.maxVolume = maxV;
@@ -50,11 +50,7 @@ public class Package {
         } else if (volume >= rockVolumes[rockNum]) {
             int load = maxPack(volume - rockVolumes[rockNum], rockNum - 1) + rockValues[rockNum];
             int unload = maxPack(volume, rockNum - 1);
-            if (load >= unload) {
-                retMaxPack = load;
-            } else {
-                retMaxPack = unload;
-            }
+            retMaxPack = Math.max(load, unload);
         } else {
             retMaxPack = maxPack(volume, rockNum - 1);
         }
