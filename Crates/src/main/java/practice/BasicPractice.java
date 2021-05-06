@@ -1,5 +1,8 @@
 package practice;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.security.MessageDigest;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -11,19 +14,18 @@ import java.util.Date;
  * @author Philip
  */
 public class BasicPractice {
+    private static final Logger logger = LoggerFactory.getLogger(BasicPractice.class);
 
-    public static void main(String[] args) throws InterruptedException {
-        long beginT = System.currentTimeMillis();
-        long endT = System.currentTimeMillis();
-
+    public static void main(String[] args) {
         // 字符串转date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date newDate = sdf.parse("2019-12-30", new ParsePosition(0));
-        System.out.println("new date: " + newDate.toString());
+        logger.info("new date: {}", newDate);
 
-        LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH24:mm:ss"));
-        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS")));
-
+        String format1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH24:mm:ss"));
+        logger.info("format1: {}", format1);
+        String format2 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS"));
+        logger.info("format2: {}", format2);
     }
 
     public static String hexStr2Str(String hexStr) {
@@ -39,7 +41,7 @@ public class BasicPractice {
         return new String(bytes);
     }
 
-    public static String MD5(String pwd) {
+    public static String doMD5(String pwd) {
         //用于加密的字符
         char[] md5String = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         try {

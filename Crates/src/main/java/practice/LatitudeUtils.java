@@ -1,6 +1,8 @@
 package practice;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,49 +19,51 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
 public class LatitudeUtils {
-
     public static final String KEY_1 = "7d9fbeb43e975cd1e9477a7e5d5e192a";
+    private static final Logger logger = LoggerFactory.getLogger(LatitudeUtils.class);
 
     /**
      * 返回输入地址的经纬度坐标
      * key lng(经度),lat(纬度)
      */
-    public static Map<String,String> getGeocoderLatitude(String address){
+    public static Map<String, String> getGeocoderLatitude(String address) {
         BufferedReader in = null;
         try {
 
             //将地址转换成utf-8的16进制
             address = URLEncoder.encode(address, "UTF-8");
 
-            URL tirc = new URL("http://api.map.baidu.com/geocoder/V2?address="+ address +"&output=json&key="+ KEY_1);
-            System.out.println("tirc: " + tirc);
+            URL tirc = new URL("http://api.map.baidu.com/geocoder/V2?address=" + address + "&output=json&key=" + KEY_1);
+            logger.info("tirc: {}", tirc);
 
             in = new BufferedReader(new InputStreamReader(tirc.openStream(), StandardCharsets.UTF_8));
             String res;
             StringBuilder sb = new StringBuilder();
-            while((res = in.readLine())!=null){
+            while ((res = in.readLine()) != null) {
                 sb.append(res.trim());
             }
             String str = sb.toString();
-            Map<String,String> map = null;
-            if(StringUtils.isNotEmpty(str)){
+            Map<String, String> map = null;
+            if (StringUtils.isNotEmpty(str)) {
                 int lngStart = str.indexOf("lng\":");
                 int lngEnd = str.indexOf(",\"lat");
                 int latEnd = str.indexOf("},\"precise");
-                if(lngStart > 0 && lngEnd > 0 && latEnd > 0){
-                    String lng = str.substring(lngStart+5, lngEnd);
-                    String lat = str.substring(lngEnd+7, latEnd);
+                if (lngStart > 0 && lngEnd > 0 && latEnd > 0) {
+                    String lng = str.substring(lngStart + 5, lngEnd);
+                    String lat = str.substring(lngEnd + 7, latEnd);
                     map = new HashMap<>();
                     map.put("lng", lng);
                     map.put("lat", lat);
                     return map;
                 }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
-                in.close();
+                if (in != null) {
+                    in.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -67,12 +71,17 @@ public class LatitudeUtils {
         return null;
     }
 
-    public static void main(String[] args){
-        Map<String, String> json = LatitudeUtils.getGeocoderLatitude("福建泉州安溪湖头");
+    public static void main(String[] args) {
+        String address = "福建泉州安溪湖头";
+        Map<String, String> json = LatitudeUtils.getGeocoderLatitude(address);
 
-        System.out.println("json: " + json.toString());
-//        System.out.println("lng : " + json.get("lng"));
-//        System.out.println("lat : " + json.get("lat"));
+        if (json != null) {
+            logger.info("json: {}", json);
+            logger.info("lng : {}", json.get("lng"));
+            logger.info("lat : {}", json.get("lat"));
+        } else {
+            logger.info("Failed fetching GeocoderLatitude. Address: {}", address);
+        }
     }
 
 
@@ -83,6 +92,8 @@ public class LatitudeUtils {
  * java版计算signature签名
  */
 class SnCal {
+    private static final Logger logger = LoggerFactory.getLogger(SnCal.class);
+
     public static void main(String[] args)
             throws UnsupportedEncodingException, NoSuchAlgorithmException {
         SnCal snCal = new SnCal();
@@ -94,7 +105,7 @@ class SnCal {
         paramsMap中先放入address，再放output，然后放ak，放入顺序必须跟get请求中对应参数的出现顺序保持一致。
      */
 
-        Map paramsMap = new LinkedHashMap<String, String>();
+        Map<String, String> paramsMap = new LinkedHashMap<>();
         paramsMap.put("address", "百度大厦");
         paramsMap.put("output", "json");
         paramsMap.put("ak", "yourak");
@@ -109,7 +120,7 @@ class SnCal {
         String tempStr = URLEncoder.encode(wholeStr, "UTF-8");
 
         // 调用下面的MD5方法得到最后的sn签名7de5a22212ffaa9e326444c75a58f9a0
-        System.out.println(snCal.MD5(tempStr));
+        logger.info(snCal.MD5(tempStr));
     }
 
     /**
