@@ -1,31 +1,65 @@
 package practice.sorting;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+
 /**
  * Created by Philip on 5/18/16.
  */
 public class ArrSort {
+	private static final Logger logger = LoggerFactory.getLogger(ArrSort.class);
+
 	private int[] arr = new int[100];
 	private int nElem = 0;
 
-	public void show() {
-		System.out.println("The array is : ");
-		for (int i=0; i < nElem; i++) {
-			System.out.print(arr[i] + " ");
+	public ArrSort(int length) {
+		if (length <= 0) {
+			logger.warn("Invalid length of array. Use default length 100.");
+		} else {
+			arr = new int[length];
 		}
-		System.out.println();
+	}
+
+	public ArrSort() {}
+
+	public void show() {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i < nElem; i++) {
+			sb.append(arr[i]).append(" ");
+		}
+		logger.info("The array is : {}", sb);
+	}
+
+	public void extendLength(int lenPlus) {
+		if (lenPlus <= 0) {
+			logger.error("invalid param: lenPlus must be positive integer.");
+			return;
+		}
+		arr = Arrays.copyOf(arr, arr.length + lenPlus);
 	}
 
 	public void insertToTail(int value) {
-		arr[nElem] = value;
-		nElem = nElem + 1;
+		if (nElem >= arr.length) {
+			logger.warn("Array is auto-extended by 10 because it is full.");
+			extendLength(10);
+		}
+		arr[nElem++] = value;
 	}
 
 	public void bubbleSort() {
 		for (int i=nElem-1; i>0; i--) {
+			boolean isSorted = true;
 			for (int j=0; j<i; j++) {
-				if (arr[j] > arr[j+1]) {     // bubble the biggest one to the right side
+				// bubble the biggest one to the right side
+				if (arr[j] > arr[j+1]) {
 					swap(j, j+1);
+					isSorted = false;
 				}
+			}
+			if (isSorted) {
+				return;
 			}
 		}
 	}
@@ -88,17 +122,14 @@ public class ArrSort {
 	 */
 	public void noDupsWithChoose() {
 		int tmp;
-
-		for (int i=0; i<nElem; i++) {        // from left to right
+		for (int i=0; i<nElem; i++) {
 			tmp = i;
 			for (int j=i+1; j<nElem; j++) {
-				if (arr[j] < arr[tmp]) {    // choose the smallest one
+				if (arr[j] < arr[tmp]) {
 					tmp = j;
-				}
-				else if (arr[j] == arr[tmp]) {       // delete the duplicated element
-					for (int k=j; k<nElem-1; k++) {
-						arr[k] = arr[k+1];
-					}
+				} else if (arr[j] == arr[tmp]) {
+					// delete the duplicated element
+					if (nElem - 1 - j >= 0) System.arraycopy(arr, j + 1, arr, j, nElem - 1 - j);
 					nElem--;
 					j--;
 				}
