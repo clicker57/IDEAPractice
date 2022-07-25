@@ -1,4 +1,7 @@
-package Tools;
+package utils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -8,6 +11,8 @@ import java.net.URLEncoder;
  * Created by Philip on 27/05/2017.
  */
 public class EncryptUtils {
+    private static final Logger logger = LoggerFactory.getLogger(EncryptUtils.class);
+
     public static String encryption001(String plain) {
         String encoded;
         StringBuilder sb = new StringBuilder();
@@ -23,7 +28,7 @@ public class EncryptUtils {
         for (String s : wordGroup) {
             if (s != null && s.length() > 1) {
                 char shiftedLast = (char) (s.charAt(s.length() - 1) + 1);
-                s = s.substring(0, s.length() - 1) + String.valueOf(shiftedLast);
+                s = s.substring(0, s.length() - 1) + shiftedLast;
                 sb.append("%" + s);
             }
         }
@@ -39,7 +44,7 @@ public class EncryptUtils {
         for (String s : wordGroup) {
             if (s != null && s.length() > 1) {
                 char shiftedLast = (char) (s.charAt(s.length() - 1) - 1);
-                s = s.substring(0, s.length() - 1) + String.valueOf(shiftedLast);
+                s = s.substring(0, s.length() - 1) + shiftedLast;
                 sb.append("%" + s);
             }
         }
@@ -54,16 +59,13 @@ public class EncryptUtils {
         return decoded;
     }
 
-    public static String encryption002(String plain) {
-        return "";
-    }
-
     public static void main(String[] args) {
         String inStr;
 
         inStr = encryption001("测试");
-        System.out.println(inStr);
+        logger.info(inStr);
 
-        System.out.println(decryption001(inStr));
+        String outStr = decryption001(inStr);
+        logger.info(outStr);
     }
 }

@@ -66,16 +66,22 @@ public class ArrSort {
 
 	public void bubbleDoubleSort() {
 		for (int outRight=nElem-1, outLeft=0; outRight>outLeft; outRight--, outLeft++) {
+			boolean isSorted = true;
 			int in=outLeft;
 			for (; in<outRight; in++) {
 				if (arr[in] > arr[in+1]) {     // bubble the biggest one to the right side
 					swap(in, in+1);
+					isSorted = false;
 				}
 			}
 			for (; in>outLeft; in--) {
 				if (arr[in] < arr[in-1]) {     // bubble the smallest one to the left side
 					swap(in, in-1);
+					isSorted = false;
 				}
+			}
+			if (isSorted) {
+				return;
 			}
 		}
 	}
@@ -95,12 +101,14 @@ public class ArrSort {
 	}
 
 	public void insertSort() {
-		int in, out;
+		int in;
+		int out;
 
 		for (out=1; out<nElem; out++) {
 			int tmp = arr[out];
 			in = out;
-			while(in>0 && tmp<arr[in-1]) {   // the smaller goes left
+			while(in>0 && tmp<arr[in-1]) {
+				// the smaller goes left
 				arr[in] = arr[in-1];
 				in--;
 			}
@@ -108,6 +116,12 @@ public class ArrSort {
 		}
 	}
 
+	/**
+	 * 堆排序
+	 */
+	public void heapSort() {
+		// todo
+	}
 
 
 	public int median() {
@@ -129,7 +143,9 @@ public class ArrSort {
 					tmp = j;
 				} else if (arr[j] == arr[tmp]) {
 					// delete the duplicated element
-					if (nElem - 1 - j >= 0) System.arraycopy(arr, j + 1, arr, j, nElem - 1 - j);
+					if (nElem - 1 - j >= 0) {
+						System.arraycopy(arr, j + 1, arr, j, nElem - 1 - j);
+					}
 					nElem--;
 					j--;
 				}
@@ -140,12 +156,12 @@ public class ArrSort {
 
 	private void swap(int a, int b) {
 		if (a<0 || a>=nElem || b<0 || b>=nElem) {
-			System.out.println("out of index");
+			logger.info("out of index");
 			return;
 		}
 
 		if (a == b) {
-			System.out.println("same index, no need to switch.");
+			logger.info("same index, no need to switch.");
 			return;
 		}
 

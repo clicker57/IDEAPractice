@@ -3,11 +3,18 @@ package practice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.MessageDigest;
-import java.text.ParsePosition;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -18,14 +25,61 @@ public class BasicPractice {
 
     public static void main(String[] args) {
         // 字符串转date
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date newDate = sdf.parse("2019-12-30", new ParsePosition(0));
-        logger.info("new date: {}", newDate);
-
-        String format1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH24:mm:ss"));
+        String format1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         logger.info("format1: {}", format1);
         String format2 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS"));
         logger.info("format2: {}", format2);
+
+        DecimalFormat df = new DecimalFormat("0.00#");
+        BigDecimal fact = BigDecimal.valueOf(1110.000);
+        logger.info(df.format(fact));
+        logger.info(String.valueOf(fact.setScale(6, RoundingMode.HALF_DOWN)));
+
+        df = new DecimalFormat("#.###############");
+        String s = df.format(fact);
+        logger.info("s = {}", s);
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(2022, 0, 18);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String currentTime = sdf.format(cal.getTime());
+        logger.info("current date : {}", currentTime);
+        String thisMonday = sdf.format(getThisWeekMonday(cal.getTime()));
+        logger.info("Monday this week : {}", thisMonday);
+    }
+
+    public static Date getThisWeekMonday(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        // 获得当前日期是一个星期的第几天
+        int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
+        if (1 == dayWeek) {
+            cal.add(Calendar.DAY_OF_MONTH, -1);
+        }
+        // 设置一个星期的第一天，按中国的习惯一个星期的第一天是星期一
+        cal.setFirstDayOfWeek(Calendar.MONDAY);
+        // 获得当前日期是一个星期的第几天
+        int day = cal.get(Calendar.DAY_OF_WEEK);
+        // 根据日历的规则，给当前日期减去星期几与一个星期第一天的差值
+        cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
+        return cal.getTime();
+    }
+
+    private static void demoLocalDate() {
+        // date -> localdate
+        Date dt1 = new Date();
+        LocalDate ld1 = dt1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        logger.info("date -> localdate : {}", ld1);
+
+        // localdate -> date
+        LocalDate ld2 = LocalDate.now();
+        ZonedDateTime zonedDateTime = ld2.atStartOfDay(ZoneId.systemDefault());
+        Date dt2 = Date.from(zonedDateTime.toInstant());
+        logger.info("localdate -> date : {}", dt2);
+
+        LocalDate ld = LocalDate.of(2021, 6, 28);
+        long diffMon = ChronoUnit.MONTHS.between(ld, LocalDate.now());
+        logger.info("the interval of months is {}", diffMon);
     }
 
     public static String hexStr2Str(String hexStr) {

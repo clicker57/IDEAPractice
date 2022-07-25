@@ -1,4 +1,7 @@
-package Tools;
+package utils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +11,8 @@ import java.util.Properties;
  * Created by Philip on 10/13/16.
  */
 public class PropertiesTools {
+    private static final Logger logger = LoggerFactory.getLogger(PropertiesTools.class);
+
     private static Properties prop;
     private static PropertiesTools instance;
 
@@ -20,8 +25,7 @@ public class PropertiesTools {
             prop = new Properties();
             prop.load(in);
         } catch (IOException e) {
-            System.out.println("Error: Read PropertiesTools.properties file failed!!!");
-            e.printStackTrace();
+            logger.error("Error: Read PropertiesTools.properties file failed!!!\n{}", e.getMessage());
         }
     }
 

@@ -20,14 +20,13 @@ public class SortApp {
 		testArr.show();
 
 		//System.out.println("sort the array...");
-		testArr.bubbleSort();
-		//testArr.bubbleDoubleSort();
-		//testArr.chooseSort();
-		//testArr.insertSort();
+//		testArr.bubbleSort();
+		testArr.bubbleDoubleSort();
+//		testArr.chooseSort();
+//		testArr.insertSort();
 		//System.out.println("the median of the array is : " + testArr.median());
 
-		//testArr.noDups();
-		testArr.noDupsWithChoose();
+//		testArr.noDupsWithChoose();
 		testArr.show();
 	}
 
