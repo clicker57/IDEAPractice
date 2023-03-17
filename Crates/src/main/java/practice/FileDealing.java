@@ -14,6 +14,12 @@ import java.util.Objects;
 public class FileDealing {
     private static final Logger logger = LoggerFactory.getLogger(FileDealing.class);
 
+    private String fileName;
+
+    public String getFileName() {
+        return this.fileName;
+    }
+
     public static void main(String[] args) throws IOException {
         FileDealing fd = new FileDealing();
         String src = "/Users/Philip/study/Java/Java深度历险.pdf";

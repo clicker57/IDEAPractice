@@ -2,6 +2,7 @@ package practice;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import practice.sorting.ArrSort;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,13 +15,15 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
  * @author Philip
  */
-public class BasicPractice {
+public class BasicPractice extends ArrSort {
     private static final Logger logger = LoggerFactory.getLogger(BasicPractice.class);
 
     public static void main(String[] args) {
@@ -32,12 +35,14 @@ public class BasicPractice {
 
         DecimalFormat df = new DecimalFormat("0.00#");
         BigDecimal fact = BigDecimal.valueOf(1110.000);
-        logger.info(df.format(fact));
-        logger.info(String.valueOf(fact.setScale(6, RoundingMode.HALF_DOWN)));
+        String dfStr = df.format(fact);
+        logger.info(dfStr);
+        String factStr = String.valueOf(fact.setScale(6, RoundingMode.HALF_DOWN));
+        logger.info(factStr);
 
         df = new DecimalFormat("#.###############");
-        String s = df.format(fact);
-        logger.info("s = {}", s);
+        dfStr = df.format(fact);
+        logger.info("s = {}", dfStr);
 
         Calendar cal = Calendar.getInstance();
         cal.set(2022, 0, 18);
@@ -46,6 +51,12 @@ public class BasicPractice {
         logger.info("current date : {}", currentTime);
         String thisMonday = sdf.format(getThisWeekMonday(cal.getTime()));
         logger.info("Monday this week : {}", thisMonday);
+
+        String[] arr = new String[]{"1", "10", "A", "14", "3", "10"};
+        Arrays.sort(arr, 1, 5, Comparator.comparing(String::toString));
+
+        String arrStr = Arrays.toString(arr);
+        logger.info("arr : {}", arrStr);
     }
 
     public static Date getThisWeekMonday(Date date) {
@@ -119,10 +130,8 @@ public class BasicPractice {
                 str[k++] = md5String[byte0 >>> 4 & 0xf];
                 str[k++] = md5String[byte0 & 0xf];
             }
-
             //返回经过加密后的字符串
             return new String(str);
-
         } catch (Exception e) {
             return null;
         }

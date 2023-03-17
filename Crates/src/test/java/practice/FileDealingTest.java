@@ -1,10 +1,9 @@
 package practice;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
-
-import static org.junit.Assert.*;
 
 public class FileDealingTest {
 
@@ -13,5 +12,6 @@ public class FileDealingTest {
         String startDir = "/Users/Philip/workspaces/IDEAPractice/Crates/src";
         FileDealing obj = new FileDealing();
         obj.diveInFile(new File(startDir));
+        Assert.assertNotNull(obj.getFileName());
     }
 }
