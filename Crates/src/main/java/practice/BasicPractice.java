@@ -28,8 +28,6 @@ public class BasicPractice extends ArrSort {
 
     public static void main(String[] args) {
         // 字符串转date
-        String format1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        logger.info("format1: {}", format1);
         String format2 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS"));
         logger.info("format2: {}", format2);
 
@@ -39,7 +37,6 @@ public class BasicPractice extends ArrSort {
         logger.info(dfStr);
         String factStr = String.valueOf(fact.setScale(6, RoundingMode.HALF_DOWN));
         logger.info(factStr);
-
         df = new DecimalFormat("#.###############");
         dfStr = df.format(fact);
         logger.info("s = {}", dfStr);
@@ -54,7 +51,6 @@ public class BasicPractice extends ArrSort {
 
         String[] arr = new String[]{"1", "10", "A", "14", "3", "10"};
         Arrays.sort(arr, 1, 5, Comparator.comparing(String::toString));
-
         String arrStr = Arrays.toString(arr);
         logger.info("arr : {}", arrStr);
     }

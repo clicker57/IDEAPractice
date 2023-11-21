@@ -1,7 +1,7 @@
 package practice;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * Created by Philip on 10/17/16.
@@ -32,7 +32,7 @@ public class JSONTest {
         System.out.println("jsonObj2: "+jsonObj2);
 
         //创建jsonObj3，只有一个条目，内容为jsonObj2
-        jsonObj3.element("j3", jsonObj2);
+        jsonObj3.put("j3", jsonObj2);
         System.out.println("jsonObj3: "+jsonObj3);
 
         //往JSONArray中添加JSONObject对象。发现JSONArray跟JSONObject的区别就是JSONArray比JSONObject多中括号[]
@@ -40,7 +40,7 @@ public class JSONTest {
         System.out.println("jsonArray: "+jsonArray);
 
         JSONObject jsonObj4  = new JSONObject();
-        jsonObj4.element("weather", jsonArray);
+        jsonObj4.put("weather", jsonArray);
         System.out.println("jsonObj4: "+jsonObj4);
 
     }

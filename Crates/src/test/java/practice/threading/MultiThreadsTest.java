@@ -1,17 +1,17 @@
 package practice.threading;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class MultiThreadsTest {
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
     }
 
@@ -27,7 +27,7 @@ public class MultiThreadsTest {
 
         t1.start();
         t2.start();
-        Assert.assertNotNull(t1.gettName());
+        Assertions.assertNotNull(t1.gettName());
     }
 
 //    @Test

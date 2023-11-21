@@ -66,13 +66,13 @@ public class IpUtils {
     public static void main(String[] args) {
         long result = ipv4StringToLong("111.18.142.60");
         System.out.println(result);
-        String ip1 = ipv4LongToString(Long.parseLong("16777472"));
+        String ip1 = ipv4LongToString(Long.parseLong("48354559"));
         System.out.println(ip1);
 
-        BigInteger res2 = ipv6ToInteger("fe00:0000:0000:0000:0000:0000:0000:0000");
-        System.out.println(res2);
-        // 281470698520576 58569024899333240586683499811191128064
-        String ip2 = ipv6ToString(new BigInteger("58569024899333240586683499811191128064"));
-        System.out.println(ip2);
+//        BigInteger res2 = ipv6ToInteger("0000:0000:0000:0000:0000:0000:ffff:ffff");
+//        System.out.println(res2);
+//        // 281470698520576 58569024899333240586683499811191128064
+//        String ip2 = ipv6ToString(new BigInteger("58569024899333240586683499811191128064"));
+//        System.out.println(ip2);
     }
 }

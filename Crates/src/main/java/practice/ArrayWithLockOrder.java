@@ -9,7 +9,7 @@ class ArrayWithLockOrder {
         arr = a;
         synchronized (ArrayWithLockOrder.class) {
             num_locks++;
-            // Îª´Ë¶ÔÏóÊµÀıÉèÖÃÎ¨Ò»µÄ lock_order
+            // ä¸ºæ­¤å¯¹è±¡å®ä¾‹è®¾ç½®å”¯ä¸€çš„ lock_order
             lock_order = num_locks;
         }
     }
@@ -26,19 +26,19 @@ class ArrayWithLockOrder {
 class SomeClass implements Runnable {
     public int sumArrays(ArrayWithLockOrder a1, ArrayWithLockOrder a2) {
         int value = 0;
-        // ±£ÁôÊı×éÒıÓÃµÄÒ»¸ö
+        // ä¿ç•™æ•°ç»„å¼•ç”¨çš„ä¸€ä¸ª
         ArrayWithLockOrder first = a1;
-        // ±¾µØ¸±±¾¡£
+        // æœ¬åœ°å‰¯æœ¬ã€‚
         ArrayWithLockOrder last = a2;
         int size = a1.array().length;
         if (size == a2.array().length) {
-            // È·¶¨²¢ÉèÖÃ¶ÔÏóµÄËø¶¨
+            // ç¡®å®šå¹¶è®¾ç½®å¯¹è±¡çš„é”å®š
             if (a1.lockOrder() > a2.lockOrder()) {
-                // ×¢ÒâË³Ğò
+                // æ³¨æ„é¡ºåº
                 first = a2;
                 last = a1;
             }
-            // °´ÕıÈ·µÄË³ĞòËø¶¨¶ÔÏó
+            // æŒ‰æ­£ç¡®çš„é¡ºåºé”å®šå¯¹è±¡
             synchronized (first) {
                 synchronized (last) {
                     int[] arr1 = a1.array();

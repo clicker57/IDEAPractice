@@ -2,7 +2,7 @@ package day08;
 
 import day08.exercise1.Director;
 import day08.exercise1.Manager;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PackageTest {
     @Test

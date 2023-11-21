@@ -15,9 +15,14 @@ public class FileDealing {
     private static final Logger logger = LoggerFactory.getLogger(FileDealing.class);
 
     private String fileName;
+    private int fileCounter;
 
     public String getFileName() {
         return this.fileName;
+    }
+
+    public int getFileCounter() {
+        return this.fileCounter;
     }
 
     public static void main(String[] args) throws IOException {
@@ -82,7 +87,9 @@ public class FileDealing {
             return;
         }
         logger.info(file.getAbsolutePath());
+        fileCounter++;
         if (file.isDirectory()) {
+            fileCounter--;
             File[] subFiles = file.listFiles();
             for (File sf : Objects.requireNonNull(subFiles)) {
                 diveInFile(sf);

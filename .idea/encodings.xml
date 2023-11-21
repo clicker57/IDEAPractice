@@ -4,8 +4,6 @@
     <file url="file://$PROJECT_DIR$/Coursera/src/javaprogramming/Eratosthenes.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Crates/src/main/java/Tools/EncryptUtils.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Crates/src/main/java/Tools/PropertiesTools.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/main/java/practice/BasicPractice.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/main/java/practice/HtmlParser.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/main/java/practice/InnerClassStudy.java" charset="UTF-8" />
@@ -28,6 +26,8 @@
     <file url="file://$PROJECT_DIR$/Crates/src/main/java/practice/sorting/ArrSort.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/main/java/practice/sorting/SortApp.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Crates/src/main/java/practice/threading/Plate.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Crates/src/main/java/utils/EncryptUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Crates/src/main/java/utils/PropertiesTools.java" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

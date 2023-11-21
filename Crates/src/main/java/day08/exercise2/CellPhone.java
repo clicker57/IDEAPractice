@@ -51,7 +51,7 @@ public class CellPhone extends Telephone implements Elec, Net {
     }
 
     public void sendSMS(String name, String text) {
-        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(text)) {
+        if (!StringUtils.hasText(name) || !StringUtils.hasText(text)) {
             throw new RuntimeException("Cannot send sms to no name.");
         }
         if (powerStatus) {
