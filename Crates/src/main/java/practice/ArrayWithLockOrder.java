@@ -2,7 +2,7 @@ package practice;
 
 class ArrayWithLockOrder {
     private static long num_locks = 0;
-    private long lock_order;
+    private long lockOrder;
     private int[] arr;
 
     public ArrayWithLockOrder(int[] a) {
@@ -10,12 +10,12 @@ class ArrayWithLockOrder {
         synchronized (ArrayWithLockOrder.class) {
             num_locks++;
             // 为此对象实例设置唯一的 lock_order
-            lock_order = num_locks;
+            lockOrder = num_locks;
         }
     }
 
     public long lockOrder() {
-        return lock_order;
+        return lockOrder;
     }
 
     public int[] array() {

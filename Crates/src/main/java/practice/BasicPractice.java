@@ -42,7 +42,7 @@ public class BasicPractice extends ArrSort {
         logger.info("s = {}", dfStr);
 
         Calendar cal = Calendar.getInstance();
-        cal.set(2022, 0, 18);
+        cal.set(2022, Calendar.JANUARY, 18);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String currentTime = sdf.format(cal.getTime());
         logger.info("current date : {}", currentTime);

@@ -7,9 +7,8 @@ import com.alibaba.fastjson.JSONObject;
  * Created by Philip on 10/17/16.
  */
 public class JSONTest {
-    public static void main(String args[])
+    public static void main(String[] args)
     {
-        JSONTest obj = new JSONTest();
         JSONObject jsonObj0  = new JSONObject();
         JSONObject jsonObj1  = new JSONObject();
         JSONObject jsonObj2  = new JSONObject();

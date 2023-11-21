@@ -43,7 +43,7 @@ public class LatitudeUtils {
                 sb.append(res.trim());
             }
             String str = sb.toString();
-            Map<String, String> map = null;
+            Map<String, String> map;
             if (StringUtils.isNotEmpty(str)) {
                 int lngStart = str.indexOf("lng\":");
                 int lngEnd = str.indexOf(",\"lat");
@@ -132,11 +132,11 @@ class SnCal {
      */
     public String toQueryString(Map<?, ?> data)
             throws UnsupportedEncodingException {
-        StringBuffer queryString = new StringBuffer();
+        StringBuilder queryString = new StringBuilder();
         for (Entry<?, ?> pair : data.entrySet()) {
-            queryString.append(pair.getKey() + "=");
+            queryString.append(pair.getKey()).append("=");
             queryString.append(URLEncoder.encode((String) pair.getValue(),
-                    "UTF-8") + "&");
+                    "UTF-8")).append("&");
         }
         if (queryString.length() > 0) {
             queryString.deleteCharAt(queryString.length() - 1);
@@ -154,12 +154,12 @@ class SnCal {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
             byte[] array = md.digest(md5.getBytes());
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < array.length; ++i) {
-                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100), 1, 3);
+            StringBuilder sb = new StringBuilder();
+            for (byte b : array) {
+                sb.append(Integer.toHexString((b & 0xFF) | 0x100), 1, 3);
             }
             return sb.toString();
-        } catch (java.security.NoSuchAlgorithmException e) {
+        } catch (java.security.NoSuchAlgorithmException ignored) {
         }
 
         return null;

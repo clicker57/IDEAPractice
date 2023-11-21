@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 public class MultiThreadsTest {
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     public static void main(String[] args) {

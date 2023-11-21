@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 /**
@@ -61,8 +63,8 @@ public class FileDealing {
     }
 
     public void bufferedStreamTrans(String srcFile, String dstFile) throws IOException {
-        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(srcFile));
-             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dstFile))) {
+        try (BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(Paths.get(srcFile)));
+             BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(Paths.get(dstFile)))) {
             int ch;
             while ((ch = bis.read()) != -1) {
                 bos.write(ch);
@@ -71,8 +73,8 @@ public class FileDealing {
     }
 
     public void bufferedStreamArrayTrans(String srcFile, String dstFile) throws IOException {
-        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(srcFile));
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dstFile))) {
+        try (BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(Paths.get(srcFile)));
+             BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(Paths.get(dstFile)))) {
             byte[] chArr = new byte[1024];
             int n;
             while ((n = bis.read(chArr)) > 0) {

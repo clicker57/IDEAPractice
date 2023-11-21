@@ -22,7 +22,7 @@ public class MapInAndOut {
     private DemoTDao demoTDao;
 
     public void queryIndefiniteTable(String columnStr, String tableName) {
-        if (StringUtils.isEmpty(columnStr)) {
+        if (!StringUtils.hasText(columnStr)) {
             log.error("Invalid param: columnStr is empty.");
             return;
         }
